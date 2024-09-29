@@ -3,19 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "../services/auth.service";
 
 const Navbar = () => {
-    const navigate = useNavigate();
-    
-    const handleLogout = () => {
-        authService.logout(); 
-        navigate("/"); 
-    };
+  const navigate = useNavigate();
   
-    const isLoggedIn = !!localStorage.getItem("accessToken");
-    const userRole = localStorage.getItem("userRole");
-    const userName = localStorage.getItem("userName");
+  const handleLogout = () => {
+    authService.logout(); 
+    navigate("/"); 
+  };
 
-    return (
-        <nav className="bg-gray-800 p-4">
+  const isLoggedIn = !!localStorage.getItem("accessToken");
+  const userRole = localStorage.getItem("userRole");
+  const userName = localStorage.getItem("userName");
+
+  return (
+    <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-white text-lg font-bold">
           Course Management
@@ -33,6 +33,13 @@ const Navbar = () => {
           </li>
           {isLoggedIn ? (
             <>
+              {userRole && userRole.includes("ROLES_ADMIN") && (
+                <li>
+                  <Link to="/admin" className="text-white hover:underline">
+                    Admin
+                  </Link>
+                </li>
+              )}
               <li className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost text-white m-1">
                   {userName || "User"} {/* แสดงชื่อผู้ใช้ */}
@@ -49,13 +56,6 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              {userRole === "admin" && (
-                <li>
-                  <Link to="/admin" className="text-white hover:underline">
-                    Admin
-                  </Link>
-                </li>
-              )}
             </>
           ) : (
             <>

@@ -22,7 +22,7 @@ const UserProfile = () => {
             <div className="card card-side bg-base-100 shadow-xl">
                 <figure>
                     <img
-                        src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvIipkaf0CTRxWkhdpUk3AV9EffwVdTeJWCQ&s"
                         alt="Profile"
                     />
                 </figure>
